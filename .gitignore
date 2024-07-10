@@ -37,4 +37,4 @@ out/
 .vscode/
 
 ### Ignore application.yml ###
-./src/main/resources/templates/application.yaml
+application.yaml
