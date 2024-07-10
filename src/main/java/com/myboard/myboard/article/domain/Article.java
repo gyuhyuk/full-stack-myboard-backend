@@ -1,4 +1,4 @@
-package com.myboard.myboard.article;
+package com.myboard.myboard.article.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
