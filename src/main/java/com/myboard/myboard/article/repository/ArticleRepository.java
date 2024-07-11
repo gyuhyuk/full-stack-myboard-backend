@@ -1,4 +1,4 @@
-package com.myboard.myboard.article.domain.repository;
+package com.myboard.myboard.article.repository;
 
 import com.myboard.myboard.article.domain.Article;
 import org.springframework.data.jpa.repository.JpaRepository;

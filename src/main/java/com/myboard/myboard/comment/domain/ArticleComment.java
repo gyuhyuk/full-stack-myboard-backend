@@ -1,6 +1,7 @@
 package com.myboard.myboard.comment.domain;
 
 import com.myboard.myboard.article.domain.Article;
+import com.myboard.myboard.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import java.util.Objects;
 }
 )
 @Entity
-public class ArticleComment {
+public class ArticleComment extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // PK

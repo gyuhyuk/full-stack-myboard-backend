@@ -1,6 +1,7 @@
 package com.myboard.myboard.article.domain;
 
 import com.myboard.myboard.comment.domain.ArticleComment;
+import com.myboard.myboard.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import java.util.Set;
         @Index(columnList = "createdBy")
 })
 @Entity
-public class Article {
+public class Article extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
