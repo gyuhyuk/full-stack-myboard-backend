@@ -2,6 +2,7 @@ package com.myboard.myboard.article.domain;
 
 import com.myboard.myboard.comment.domain.ArticleComment;
 import com.myboard.myboard.common.entity.BaseEntity;
+import com.myboard.myboard.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,9 @@ public class Article extends BaseEntity {
     @Setter @Column(nullable = false) private String title; // 제목
     @Setter @Column(nullable = false, length = 10000) private String content; // 본문
     @Setter private String hashtag; // 해시태그
+
+    @ManyToOne(optional = false)
+    private Member member;
 
     @ToString.Exclude
     @OrderBy("id")
