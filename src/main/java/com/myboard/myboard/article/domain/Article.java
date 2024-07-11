@@ -1,12 +1,15 @@
 package com.myboard.myboard.article.domain;
 
+import com.myboard.myboard.comment.domain.ArticleComment;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @ToString
@@ -26,6 +29,11 @@ public class Article {
     @Setter @Column(nullable = false) private String title; // 제목
     @Setter @Column(nullable = false, length = 10000) private String content; // 본문
     @Setter private String hashtag; // 해시태그
+
+    @ToString.Exclude
+    @OrderBy("id")
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+    private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
     private LocalDateTime createdAt; // TODO : BaseEntity 생성 시 변경
     private String createdBy; // TODO : Member 도메인 생성 시 Member로 변경

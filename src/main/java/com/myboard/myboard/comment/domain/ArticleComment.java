@@ -1,4 +1,4 @@
-package com.myboard.myboard.comment;
+package com.myboard.myboard.comment.domain;
 
 import com.myboard.myboard.article.domain.Article;
 import jakarta.persistence.*;
