@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -40,19 +39,17 @@ public class Article extends BaseEntity {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-    private LocalDateTime createdAt; // TODO : BaseEntity 생성 시 변경
-    private String createdBy; // TODO : Member 도메인 생성 시 Member로 변경
-
     protected Article() {}
 
-    private Article(String title, String content, String hashtag) {
+    private Article(String title, String content, String hashtag, Member member) {
         this.title = title;
         this.content = content;
         this.hashtag = hashtag;
+        this.member = member;
     }
 
-    public static Article of(String title, String content, String hashtag) {
-        return new Article(title, content, hashtag);
+    public static Article of(String title, String content, String hashtag, Member member) {
+        return new Article(title, content, hashtag, member);
     }
 
     @Override
