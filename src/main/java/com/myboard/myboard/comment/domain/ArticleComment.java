@@ -2,12 +2,12 @@ package com.myboard.myboard.comment.domain;
 
 import com.myboard.myboard.article.domain.Article;
 import com.myboard.myboard.common.entity.BaseEntity;
+import com.myboard.myboard.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -27,17 +27,18 @@ public class ArticleComment extends BaseEntity {
     @Setter @ManyToOne(optional = false) Article article; // 게시글 (ID)
     @Setter @Column(nullable = false, length = 500) String content; // 본문
 
-    @Column(nullable = false) private LocalDateTime createdAt; // 생성일
-    @Column(nullable = false) private String createdBy; // 생성자
+    @ManyToOne(optional = false)
+    private Member member;
 
     protected ArticleComment() {}
-    private ArticleComment(Article article, String content) {
+    private ArticleComment(Article article, String content, Member member) {
         this.article = article;
         this.content = content;
+        this.member = member;
     }
 
-    public static ArticleComment of(Article article, String content) {
-        return new ArticleComment(article, content);
+    public static ArticleComment of(Article article, String content, Member member) {
+        return new ArticleComment(article, content, member);
     }
 
     @Override
