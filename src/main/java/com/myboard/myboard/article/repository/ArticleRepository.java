@@ -19,6 +19,7 @@ public interface ArticleRepository extends
         bindings.excludeUnlistedProperties(true);
         bindings.including(root.title, root.content, root.hashtag, root.createdAt, root.member.nickname);
         bindings.bind(root.title).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.hashtag).first(StringExpression::containsIgnoreCase);
         bindings.bind(root.createdAt).first(DateTimeExpression::eq);
         bindings.bind(root.member.nickname).first(StringExpression::containsIgnoreCase); // 닉네임으로 비교
     }
