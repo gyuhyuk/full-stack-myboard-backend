@@ -38,3 +38,6 @@ out/
 
 ### Ignore application.yml ###
 application.yaml
+
+### Querydsl
+/src/main/generated
