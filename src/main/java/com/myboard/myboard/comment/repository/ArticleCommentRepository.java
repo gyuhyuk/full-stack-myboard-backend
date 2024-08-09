@@ -16,10 +16,10 @@ public interface ArticleCommentRepository extends
 {
     @Override
     default void customize(QuerydslBindings bindings, QArticleComment root) {
-        bindings.excludeUnlistedProperties(true);
-        bindings.including(root.content, root.member.nickname, root.createdAt);
+        bindings.excludeUnlistedProperties(true); // 리스팅을 하지 않은 프로퍼티는 검색에서 제외
+        bindings.including(root.content, root.createdAt, root.member.nickname);
         bindings.bind(root.content).first(StringExpression::containsIgnoreCase);
+        bindings.bind(root.createdAt).first(DateTimeExpression::eq); // 문자열이 아니고 DateTimeExpression
         bindings.bind(root.member.nickname).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
     }
 }

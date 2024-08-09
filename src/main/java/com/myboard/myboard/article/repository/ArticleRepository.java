@@ -16,11 +16,11 @@ public interface ArticleRepository extends
 {
     @Override
     default void customize(QuerydslBindings bindings, QArticle root) {
-        bindings.excludeUnlistedProperties(true);
+        bindings.excludeUnlistedProperties(true); // 리스팅을 하지 않은 프로퍼티는 검색에서 제외
         bindings.including(root.title, root.content, root.hashtag, root.createdAt, root.member.nickname);
         bindings.bind(root.title).first(StringExpression::containsIgnoreCase);
         bindings.bind(root.hashtag).first(StringExpression::containsIgnoreCase);
-        bindings.bind(root.createdAt).first(DateTimeExpression::eq);
+        bindings.bind(root.createdAt).first(DateTimeExpression::eq); // 문자열이 아니고 DateTimeExpression
         bindings.bind(root.member.nickname).first(StringExpression::containsIgnoreCase); // 닉네임으로 비교
     }
 }
